@@ -13,7 +13,7 @@ namespace Bank
 
 		virtual	float GetRate() = 0;
 
-		double	GetEMI(Loan& p);
+		double	GetEMI();
 		
 		
 	private:
@@ -21,16 +21,35 @@ namespace Bank
 		float	period;
 	};
 
-	class PersonalLoan : public Loan
+	class Taxable
 	{
 	public:
-		float GetRate();
+		virtual double GetTax() = 0;
 	};
 
-       	class HomeLoan : public Loan
+	class Discountable
 	{
 	public:
+		virtual double GetDiscount() = 0;
+	};
+
+
+	class PersonalLoan : public Loan, public Taxable
+	{
+	public:
+	   	PersonalLoan(double pri, float per);
 		float GetRate();
+		double GetTax();
+	};
+
+       	class HomeLoan : public Loan , public Discountable
+	{
+	public:
+	   	HomeLoan(double pri, float per);
+		float GetRate();
+		double GetDiscount();
+	private:
+		double limit;
 
        	};
 
