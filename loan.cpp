@@ -47,9 +47,9 @@ namespace Bank
 	double PersonalLoan :: GetTax()
 	{
 		if(Loan::GetPrinciple()<=500000)
-			return Loan::GetPrinciple * 12/100;
+			return Loan::GetPrinciple() * 12/100;
 		else
-			return Loan::GetPrinciple * 18/100;
+			return Loan::GetPrinciple() * 18/100;
 
 	}
 
@@ -71,8 +71,8 @@ namespace Bank
 	double HomeLoan :: GetDiscount()
 	{
 		if(Loan::GetPrinciple()<=2000000)
-			return Loan::GetEMI;
+			return Loan::GetEMI() * 2/100;
 		else
-			return Loan::GetEMI * 5/100;
+			return Loan::GetEMI() * 5/100;
 	}
 }
